@@ -1,4 +1,4 @@
-let {checkZipcode} = require('../src/zipcode-converter');
+let {checkZipcode, formatZipcode, calculateCd, convertToBarcode} = require('../src/zipcode-converter');
 
 describe("Zipcode converter", function () {
 	describe("checkZipcode", () => {
@@ -25,4 +25,45 @@ describe("Zipcode converter", function () {
 			}
 		});
 	});
+	describe('formatZipcode', ()=> {
+		it('format xxxxxxxx-x zipcode', ()=> {
+			let zipcode = '12345678-9';
+			let result = formatZipcode(zipcode);
+			expect(result).toEqual([1,2,3,4,5,6,7,8,9])
+		});
+		it('format xxxxxxxx-x zipcode', ()=> {
+			let zipcode = '12345678-9';
+			let result = formatZipcode(zipcode);
+			expect(result).toEqual([1,2,3,4,5,6,7,8,9])
+		});
+		it('format xxxxxxxxx zipcode', ()=> {
+			let zipcode = '123456789';
+			let result = formatZipcode(zipcode);
+			expect(result).toEqual([1,2,3,4,5,6,7,8,9])
+		});
+		it('format xxxxx zipcode', ()=> {
+			let zipcode = '12345';
+			let result = formatZipcode(zipcode);
+			expect(result).toEqual([1,2,3,4,5])
+		});
+	});
+	describe('calculateCd', () => {
+		it('calculate the correct CD', () => {
+			let zipcodeNumbers = [1,2,3,4,5];
+			let cd = calculateCd(zipcodeNumbers);
+			expect(cd).toEqual(5);	
+		});
+		it('calculate the correct CD when it is 0', () => {
+			let zipcodeNumbers = [1,2,3,2,2];
+			let cd = calculateCd(zipcodeNumbers);
+			expect(cd).toEqual(0);	
+		});
+	});
+	describe('convertToBarcode', () => {
+		it('for convert numbers to barcodes with frames', () => {
+			let zipcodeNumbers = [1,2,3,4,5,6,7,8,9,0];
+			let result = convertToBarcode(zipcodeNumbers);	
+			expect(result).toEqual("|:::||::|:|::||::|::|:|:|::||::|:::||::|:|:|::||:::|");
+		});
+	})
 });
