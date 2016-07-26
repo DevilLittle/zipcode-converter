@@ -1,4 +1,4 @@
-let {checkZipcode, formatZipcode, calculateCd, convertToBarcode} = require('../src/zipcode-converter');
+let {checkZipcode, formatZipcode, calculateCd, convertToBarcode, zipcode2barcode} = require('../src/zipcode-converter');
 
 describe("Zipcode converter", function () {
 	describe("checkZipcode", () => {
@@ -12,8 +12,8 @@ describe("Zipcode converter", function () {
 			let result = checkZipcode(zipcode);
 			expect(result).toBeTruthy();
 		});
-		it("returns true for zipcode with 9 nubmers with a '-' before last", function () {
-			let zipcode = '12345678-9';
+		it("returns true for zipcode with 9 nubmers with a '-'", function () {
+			let zipcode = '12345-6789';
 			let result = checkZipcode(zipcode);
 			expect(result).toBeTruthy();
 		});
@@ -27,12 +27,12 @@ describe("Zipcode converter", function () {
 	});
 	describe('formatZipcode', ()=> {
 		it('format xxxxxxxx-x zipcode', ()=> {
-			let zipcode = '12345678-9';
+			let zipcode = '12345-6789';
 			let result = formatZipcode(zipcode);
 			expect(result).toEqual([1,2,3,4,5,6,7,8,9])
 		});
 		it('format xxxxxxxx-x zipcode', ()=> {
-			let zipcode = '12345678-9';
+			let zipcode = '12345-6789';
 			let result = formatZipcode(zipcode);
 			expect(result).toEqual([1,2,3,4,5,6,7,8,9])
 		});
@@ -66,4 +66,9 @@ describe("Zipcode converter", function () {
 			expect(result).toEqual("|:::||::|:|::||::|::|:|:|::||::|:::||::|:|:|::||:::|");
 		});
 	})
+	it('convert zipcode to barcode', () => {
+		let zipcode = '45056-1234';
+		let result = zipcode2barcode(zipcode);
+		expect(result).toEqual('|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|')
+	});
 });
