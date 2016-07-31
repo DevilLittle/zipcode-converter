@@ -6,7 +6,7 @@ const {
   validateCd,
   formatZipcode,
   barcodeToZipcode
-} = require('../src/barcode-to-zipcode');
+} = require('../src/core/barcode-to-zipcode');
 
 describe('barcodeToZipcode', ()=> {
   describe('checkBarcode', ()=> {

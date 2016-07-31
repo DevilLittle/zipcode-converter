@@ -1,5 +1,12 @@
 "use strict";
-let {checkZipcode, formatZipcode, calculateCd, convertToBarcode, zipcode2barcode} = require('../src/zipcode-to-barcode');
+
+let {
+  checkZipcode,
+  formatZipcode,
+  calculateCd,
+  convertToBarcode,
+  zipcode2barcode
+} = require('../src/core/zipcode-to-barcode');
 
 describe("Zipcode converter", function () {
   describe("checkZipcode", () => {
