@@ -1,8 +1,10 @@
 let readline = require('readline');
-let route = require('./route');
+let Route = require('./route');
+
+const route = new Route();
 
 function sendToRoute(line) {
-  let response = route(line);
+  let response = route.handle(line);
   console.log(response.text);
   if (response.rerun) {
     sendToRoute(line);

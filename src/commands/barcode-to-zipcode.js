@@ -1,15 +1,20 @@
 let {barcodeToZipcode} = require('../core/barcode-to-zipcode');
+let CommandResponse = require('../command-response');
 
-module.exports = function (barcode) {
-  let zipcode = barcodeToZipcode(barcode);
-  if (zipcode.startsWith('Invalid barcode:')) {
-    return {
-      error: 'Please give right input'
-    }
-  } else {
-    return {
-      text: zipcode,
-      reset: true
+class BarcodeToZipcodeCommand {
+  run(barcode) {
+    let zipcode = barcodeToZipcode(barcode);
+    if (zipcode.startsWith('Invalid barcode:')) {
+      return new CommandResponse({
+        error: 'Please give right input'
+      })
+    } else {
+      return new CommandResponse({
+        text: zipcode,
+        reset: true
+      });
     }
   }
-};
+}
+
+module.exports = BarcodeToZipcodeCommand;

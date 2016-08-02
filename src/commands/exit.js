@@ -1,3 +1,7 @@
-module.exports = function (input) {
-  process.exit();
-};
+class ExitCommand {
+  run() {
+    process.exit();
+  }
+}
+
+module.exports = ExitCommand;
