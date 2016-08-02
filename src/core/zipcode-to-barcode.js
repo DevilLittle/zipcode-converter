@@ -41,7 +41,7 @@ function convertToBarcode(zipcodeNumbers) {
   return '|' + barcode + '|';
 }
 
-function zipcode2barcode(zipcode) {
+function zipcodeToBarcode(zipcode) {
   if (checkZipcode(zipcode)) {
     let zipcodeNumbers = formatZipcode(zipcode);
     let cd = calculateCd(zipcodeNumbers);
@@ -56,5 +56,5 @@ module.exports = {
   formatZipcode: formatZipcode,
   calculateCd: calculateCd,
   convertToBarcode: convertToBarcode,
-  zipcode2barcode: zipcode2barcode
+  zipcodeToBarcode: zipcodeToBarcode
 };

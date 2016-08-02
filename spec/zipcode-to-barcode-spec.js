@@ -5,7 +5,7 @@ let {
   formatZipcode,
   calculateCd,
   convertToBarcode,
-  zipcode2barcode
+  zipcodeToBarcode
 } = require('../src/core/zipcode-to-barcode');
 
 describe("Zipcode converter", function () {
@@ -115,19 +115,19 @@ describe("Zipcode converter", function () {
   });
   describe('zipcode2barcode', ()=> {
     it('converts 5 length zipcode to barcode', () => {
-      var result = zipcode2barcode('12345');
+      var result = zipcodeToBarcode('12345');
       expect(result).toEqual('|:::||::|:|::||::|::|:|:|::|:|:|')
     });
     it('converts 9 length zipcode to barcode', () => {
-      var result = zipcode2barcode('123456789');
+      var result = zipcodeToBarcode('123456789');
       expect(result).toEqual('|:::||::|:|::||::|::|:|:|::||::|:::||::|:|:|:::|:|:|')
     });
     it('converts 10 length zipcode to barcode', () => {
-      var result = zipcode2barcode('45056-1234');
+      var result = zipcodeToBarcode('45056-1234');
       expect(result).toEqual('|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|')
     });
     it('returns invalid zipcode if zipcode is invalid', ()=> {
-      var result = zipcode2barcode('123');
+      var result = zipcodeToBarcode('123');
       expect(result).toEqual('Invalid zipcode: 123');
     });
   });
